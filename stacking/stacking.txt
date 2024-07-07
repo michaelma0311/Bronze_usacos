@@ -1,0 +1,11 @@
+n, k = map(int, input().split())
+pre = [0 for i in range(n+1)]
+for i in range(k):
+    a, b = map(int, input().split())
+    pre[a-1] += 1
+    pre[b] -= 1
+cur = 0
+for i in range(1, n+1):
+    pre[i] += pre[i-1]
+pre = sorted(pre)
+print(pre[int((n+1)/2)])

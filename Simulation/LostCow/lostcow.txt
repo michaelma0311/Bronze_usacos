@@ -1,0 +1,15 @@
+fin = open('lostcow.in')
+x, y = map(int, fin.readline().split())
+direc = -1
+mov = 1
+ans = 0
+while True:
+    if (y < x and x+mov <= y) or (x < y and x+mov >= y):
+        ans += abs(x-y)
+        break
+    else:
+
+        mov = mov*direc*2
+        ans += abs(mov)
+with open('lostcow.out', 'w') as f:
+    f.write(str(ans) + '\n')

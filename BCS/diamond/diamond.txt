@@ -1,0 +1,22 @@
+fin = open('diamond.in')
+n, k = map(int, fin.readline().split())
+a = []
+for i in range(n):
+    a.append(int(fin.readline().strip()))
+a = sorted(a)
+ans = 0
+for i in range(n):
+    d = a[i]+k
+    p = 0
+    for j in range(n):
+        if a[j] <= d and a[j] > a[i]:
+            p += 1
+        elif a[i] == a[j]:
+            p += 1
+        elif a[j] < a[i]:
+            continue
+    print(p)
+    ans = max(ans, p)
+print(a)
+with open('diamond.out', 'w') as f:
+    f.write(str(ans) + '\n')

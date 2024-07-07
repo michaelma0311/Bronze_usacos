@@ -1,0 +1,65 @@
+fin = open('traffic.in')
+n = int(fin.readline().strip())
+o = []
+wx = []
+wy = []
+for p in range(n):
+    y, a, b = map(str, fin.readline().split())
+    if y == 'on' or y == 'off':
+        if len(wx) != 0:
+            o.append(('none', max(wx), min(wy)))
+            wx = []
+            wy = []
+        o.append((y, int(a), int(b)))
+
+    else:
+        wx.append(int(a))
+        wy.append(int(b))
+if len(wx) != 0:  
+    o.append(('none', max(wx), min(wy)))
+p = False
+x3 = 0
+x4 = 0
+
+x1 = 0
+x2 = 0
+print(o)
+for y, a, b in o[::-1]:
+    if p == True:
+        if y == 'on':
+            x1 -= max(a, b)
+            x2 -= min(a, b)
+        elif y == 'off':
+            x1 += min(a, b)
+            x2 += max(a, b)
+        else:
+            x1 = max(a, x1)
+            x2 = min(b, x2)
+    elif y == 'none':
+        p = True
+        x1 = a
+        x2 = b
+p = False
+print(o, x1, x2)
+for y, a, b in o:
+    if p == True:
+        if y == 'on':
+            x3 += min(a, b)
+            x4 += max(a, b)
+        elif y == 'off':
+            x3 -= max(a, b)
+            x4 -= min(a, b)
+        else:
+            x3 = max(a, x3)
+            x4 = min(b, x4)
+    elif y == 'none':
+        p = True
+        x3 = a
+        x4 = b
+x1 = max(0, x1)
+x2 = max(0, x2)
+x3 = max(0, x3)
+x4 = max(0, x4)
+with open('traffic.out', 'w') as f:
+    f.write(str(x1) + ' ' + str(x2) + '\n')
+    f.write(str(x3) + ' ' + str(x4) + '\n')

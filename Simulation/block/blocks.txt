@@ -1,0 +1,37 @@
+fin = open('blocks.in')
+n = int(fin.readline().strip())
+ans = {}
+for i in range(n):
+    a, b = map(str, fin.readline().split())
+    p = []
+    for i in a:
+        if i in b and i not in p:
+            if i not in ans:
+                if b.count(i) > a.count(i):
+
+                    ans[i] = b.count(i)
+                else:
+                    ans[i] = a.count(i)
+            
+            else:
+                ans[i] += max(b.count(i), a.count(i))
+            p.append(i)
+        else:
+            if i not in p:
+                if i not in ans:
+                    ans[i] = 1
+                else:
+                    ans[i] += 1
+    print(ans, a, b)
+    for i in b:
+        if i not in p:
+            if i not in ans:
+                ans[i] = 1
+            else:
+                ans[i] += 1
+with open('blocks.out', 'w') as f:           
+    for i in range(97, 123):
+        if chr(i) not in ans:
+            f.write('0' + '\n')
+        else:
+            f.write(str(ans[chr(i)]) + '\n')

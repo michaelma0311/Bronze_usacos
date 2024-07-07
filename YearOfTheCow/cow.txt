@@ -1,0 +1,24 @@
+zod = ["Ox", "Tiger", "Rabbit", "Dragon", "Snake", "Horse", "Goat", "Monkey", "Rooster", "Dog", "Pig", "Rat"]
+dictnum = {'Bessie':100}
+dictchar = {'Bessie':'Ox'}
+for i in range(int(input())):
+    a = input().split()
+    name1, nop, year, name2 = a[0], a[3], a[4], a[-1]
+    #print(zod.index(dictchar.get(name2)),zod.index(year))
+    if nop == 'next':
+        if zod.index(dictchar.get(name2)) >= zod.index(year):
+            #print('hi', name1, name2, dictnum.get(name2))
+            dictnum.update({name1:dictnum.get(name2)+(zod.index(year)+12)-(zod.index((dictchar.get(name2))))})
+            
+        else:
+        
+            
+            dictnum.update({name1:dictnum.get(name2)+zod.index(year) - zod.index((dictchar.get(name2)))})
+    else:
+        if zod.index(dictchar.get(name2)) > zod.index(year):
+            dictnum.update({name1:dictnum.get(name2)-(zod.index((dictchar.get(name2)))-zod.index(year))})
+        else:
+            dictnum.update({name1:dictnum.get(name2)-(12+(zod.index((dictchar.get(name2)))-zod.index(year)))})
+    dictchar.update({name1:year})
+    #print(dictnum, a)
+print(abs(dictnum.get('Bessie') - dictnum.get('Elsie')))

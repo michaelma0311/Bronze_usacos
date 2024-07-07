@@ -1,0 +1,40 @@
+from bisect import bisect_left, bisect_right
+def left(a, ind, x, i, tof, prev):
+    global totl
+    print(prev, i)
+    if prev == i: 
+        return 
+    else:
+        
+        totl += i-bisect_left(a, max(0, x-ind))
+        print(bisect_left(a, max(0, x-ind)), x, ind, a, x-ind, totl, i)
+        left(a, ind+1, a[bisect_left(a, max(0, x-ind))], bisect_left(a, max(0, x-ind)), False, i)
+    return 
+def right(a, ind, x, i, tof, prev):
+    global totr
+    if prev >= i:
+        return 
+    else:
+        totr += min(p, bisect_right(a, x+ind))-1 - i 
+        #print(a, 'num', x+ind, x, i, ind, 'bint', min(p, bisect_right(a, x+ind))-1, i, 'bval', a[min(p, bisect_right(a, x+ind))-1], totr)
+        right(a, ind+1, a[min(p, bisect_right(a, x+ind)-1)], min(p, bisect_right(a, x+ind)-1), False, i)
+    return 
+fin = open('angry.in')
+a = []
+ma = 0
+p = int(fin.readline())
+for i in range(p):
+    a.append(int(fin.readline()))
+a = sorted(a)
+for f in range(p):
+
+    totl = 0
+    totr = 0
+    
+    r = right(a, 1, a[f], f, False, -2)
+    le = left(a, 1, a[f], f, False, -2)
+    print(totr, totl, a[f])
+    ma = max(ma, totr+totl+1)
+    
+with open('angry.out', 'w') as f:
+    f.write(str(ma) + '\n')

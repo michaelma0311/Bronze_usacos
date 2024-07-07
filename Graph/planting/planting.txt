@@ -1,0 +1,21 @@
+fin = open('planting.in', 'r')
+
+N = int(fin.readline())
+
+pathways = [list(map(int, fin.readline().split())) for _ in range(N-1)]
+deg = [0] * (N + 1)
+for x in pathways:
+    print(x)
+    deg[x[0]] += 1
+    deg[x[1]] += 1
+print(deg)
+ret = 0
+
+for i in range(len(deg)):
+    ret = max(ret, deg[i])
+print(ret)
+fout = open('planting.out', 'w')
+
+fout.write(str(ret+1) + '\n')
+
+fout.close()

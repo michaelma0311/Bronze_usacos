@@ -1,0 +1,11 @@
+n = int(input())
+a = list(map(int, input().split()))
+ans = n
+for i in range(n):
+    for j in range(i+1, n):
+        if sum(a[i:j+1])%(j-i+1) == 0:
+            #print(i, j, sum(a[i:j+1]), j-i+1, sum(a[i:j+1])%(j-i+1))
+            if int(sum(a[i:j+1])/(j-i+1)) in a[i:j+1]:
+                ans += 1
+print(ans)
+

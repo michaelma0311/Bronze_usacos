@@ -1,0 +1,12 @@
+fin = open('square.in')
+x1, y1, x2, y2 = map(int, fin.readline().split())
+x3, y3, x4, y4 = map(int, fin.readline().split())
+xa = 0
+ya = 0
+cor = [(x1, y1), (x2, y2), (x3, y3), (x4, y4)]
+lis = sorted(cor, key = lambda x: x[0])
+xa = lis[-1][0] - lis[0][0]
+lis = sorted(cor, key = lambda x: x[1])
+ya = lis[-1][1] - lis[0][1]
+with open('square.out', 'w') as f:
+    f.write(str(max(ya, xa)**2))

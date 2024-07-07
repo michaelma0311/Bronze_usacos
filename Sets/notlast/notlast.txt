@@ -1,0 +1,23 @@
+fin = open('notlast.in')
+g = int(fin.readline().strip())
+l = {}
+for i in range(g):
+    a, b = map(str, fin.readline().split())
+    if a not in l:
+        l[a] = int(b)
+    else:
+        l[a] += int(b)
+l = sorted(l.items(), key=lambda x: x[1])
+s = l[0][1]
+d = False
+with open('notlast.out', 'w') as f:
+    for i, j in l:
+        if j != s:
+            f.write(str(i) + '\n')
+            d = True
+            break
+    if d == False:
+        if g == 1:
+            f.write(str(l[0][0]) + '\n')
+        else:
+            f.write('Tie' + '\n')

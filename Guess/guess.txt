@@ -1,0 +1,23 @@
+from itertools import combinations
+fin = open('guess.in')
+
+n = int(fin.readline())
+animals = dict()
+for _ in range(n):
+	inp = fin.readline().split()
+	name, k = inp[:2]
+	animals[name] = []
+	for i in range(2,2+int(k)):
+		animals[name].append(inp[i])
+
+ans = 0
+for i in combinations(animals, 2):
+    m = 0
+    x = animals[i[0]]
+    y = animals[i[1]]
+    for i in x:
+        if i in y:
+            m += 1
+    ans = max(ans, m)
+with open('guess.out', 'w') as f:
+    f.write(str(ans+1))

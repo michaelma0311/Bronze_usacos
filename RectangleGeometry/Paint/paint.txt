@@ -1,0 +1,11 @@
+fin = open('paint.in')
+x1, x2 = map(int, fin.readline().split())
+x3, x4 = map(int, fin.readline().split())
+a = [0 for i in range(100)]
+for i in range(x1, x2):
+    a[i] = 1
+for i in range(x3, x4):
+    a[i] = 1
+ans = a.count(1)
+with open('paint.out', 'w') as f:
+    f.write(str(ans) + '\n')

@@ -1,0 +1,37 @@
+def cou(l, a):
+    t = 0
+    for i in l:
+        if i == a:
+            t += 1
+    return t
+fin = open('measurement.in')
+a = int(fin.readline())
+lis = []
+p = ['Mildred', 'Elsie', 'Bessie']
+d = [7, 7, 7]
+g = {}
+for i in range(a):
+  c, h, k = fin.readline().split()
+  lis.append((int(c), h, k))
+  g.update({h:7})
+
+lis = sorted(lis, key = lambda x: x[0])
+print(lis)
+ans = 0
+for i, j, k in lis:
+
+  #print(i, j, k)
+  cop = d[:]
+  if k[0] == '+':
+    d[p.index(j)] += int(k[1])
+  else:
+    d[p.index(j)] -= int(k[1])
+  # D IS THE NUMBER P IS THE NAME
+  s = sorted(d)[::-1][0]
+  l = sorted(cop)[::-1][0]
+  #print(p, d, s, l)
+  if (s != l and p[d.index(s)] != p[cop.index(l)]) or d.count(max(d)) != cop.count(max(cop)):
+    ans += 1
+  print(d)
+with open('measurement.out', 'w') as f:
+    f.write(str(ans) + '\n')

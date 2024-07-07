@@ -1,0 +1,22 @@
+from itertools import permutations as Perm
+fin = open('lineup.in')
+a = []
+pe = Perm(sorted(['Bessie', 'Buttercup', 'Belinda', 'Beatrice', 'Bella', 'Blue', 'Betsy', 'Sue']))
+print(sorted(['Bessie', 'Buttercup', 'Belinda', 'Beatrice', 'Bella', 'Blue', 'Betsy', 'Sue']))
+for i in range(int(fin.readline().strip())):
+    p = fin.readline().split()
+    c1, c2 = p[0], p[-1]
+    a.append((c1, c2))
+print(a)
+for i in pe:
+    tof = True
+    for j, k in a:
+        if i.index(k) != i.index(j)+1 and i.index(k) != i.index(j) - 1:
+            tof = False
+            break       
+    if tof == True:
+        print(i, j, k, i.index(j), i.index(k), a)
+        with open('lineup.out', 'w') as f:
+            for l in i:
+                f.write(l + '\n')
+        break

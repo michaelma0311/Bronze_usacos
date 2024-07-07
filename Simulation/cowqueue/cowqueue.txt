@@ -1,0 +1,14 @@
+fin = open('cowqueue.in') 
+a = int(fin.readline().strip())
+c = []
+for i in range(a):
+    c.append(list(map(int, fin.readline().split())))
+c = sorted(c)
+rn = 0
+for i, j in c:
+    if i >= rn:
+        rn = j+i
+    else:
+        rn += j
+with open('cowqueue.out', 'w') as f:
+    f.write(str(rn) + '\n')

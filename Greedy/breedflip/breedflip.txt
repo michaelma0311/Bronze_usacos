@@ -1,0 +1,13 @@
+fin = open('breedflip.in')
+a = int(fin.readline().strip())
+l1 = fin.readline().strip()
+l2 = fin.readline().strip()
+l = []
+ans = 0
+for i in range(a):
+    if l1[i] != l2[i]:
+        l.append(i)
+        if i-1 not in l:
+            ans += 1
+with open('breedflip.out', 'w') as f:
+    f.write(str(ans) + '\n')

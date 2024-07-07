@@ -1,0 +1,21 @@
+fin = open('billboard.in')
+def func():
+    p = 2000  
+    g = [[0 for i in range(2000)] for j in range(2000)]
+    for i in range(3):
+        x1, y1, x2, y2 = map(int, fin.readline().split()) 
+        x1 += p//2
+        x2 += p//2
+        y2 += p//2
+        y1 += p//2
+        for xc in range(x1, x2):
+            for yc in range(y1, y2):
+                g[xc][yc] = i < 2
+    ans = 0
+    for i in range(p):
+        for j in range(p):
+            ans += g[i][j]
+    return ans
+with open('billboard.out', 'w') as f:
+    f.write(str(func()) + '\n')
+

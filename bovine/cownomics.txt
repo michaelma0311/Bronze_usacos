@@ -1,0 +1,35 @@
+fin = open('cownomics.in')
+n, m = map(int, fin.readline().split())
+p = [[0 for i in range(m)] for j in range(n)]
+s = [[0 for i in range(m)] for j in range(n)]
+l = [0]*64
+def take(i1, j1, z1):
+    v = True
+    for i in range(n):
+        l[s[i][i1]*16+s[i][j1]*4+s[i][z1]] = 1
+    for i in range(n):
+        if l[p[i][i1]*16+p[i][j1]*4+p[i][z1]] == 1:
+            v = False
+    for i in range(n):
+        l[s[i][i1]*16+s[i][j1]*4+s[i][z1]] = 0
+    return v
+
+
+d = {'A':0, 'C':1, 'G':2, 'T':3}
+for i in range(n):
+    a = fin.readline().strip()
+    for j in range(m):
+        
+        s[i][j] = d[a[j]]
+ans = 0
+for i in range(n):
+    a = fin.readline().strip()
+    for j in range(m):
+        p[i][j] = d[a[j]]
+for i in range(m):
+    for j in range(i+1, m):
+        for z in range(j+1, m):
+            if take(i, j, z) == True:
+                ans += 1
+with open('cownomics.out', 'w') as f:
+    f.write(str(ans) + '\n') 

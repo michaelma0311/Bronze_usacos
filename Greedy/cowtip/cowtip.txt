@@ -1,0 +1,26 @@
+fin = open('cowtip.in')
+a = int(fin.readline().strip())
+def swap(g, x, y):
+    n = [[0 for i in range(len(g))] for j in range(len(g))]
+    for i in range(len(g)):
+        for j in range(len(g)):
+            if i > x or j > y:
+                n[i][j] = g[i][j]
+            else:
+                if g[i][j] == 0:
+                    n[i][j] = 1
+    return n
+l = []
+for i in range(a):
+    p = []
+    for j in fin.readline().strip():
+        p.append(int(j))
+    l.append(p)
+ans = 0
+for i in range(a-1, -1, -1):
+    for j in range(a-1, -1, -1):
+        if l[i][j] == 1:
+            l = swap(l, i, j)
+            ans += 1
+with open('cowtip.out', 'w') as f:
+    f.write(str(ans) + '\n')

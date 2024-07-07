@@ -1,0 +1,9 @@
+fin = open('censor.in')
+a = fin.readline().strip()
+b = fin.readline().strip()
+
+while b in a:
+    a = a.replace(b, '', 1)
+with open('censor.out', 'w') as f:
+    f.write(str(a) + '\n')
+print(b in a, a)

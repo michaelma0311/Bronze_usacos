@@ -1,0 +1,14 @@
+fin = open('shuffle.in')
+n = int(fin.readline().strip())
+a = list(map(int, fin.readline().split()))
+b = list(map(int, fin.readline().split()))
+ans = [0 for i in range(n)]
+for i in range(0, n):
+    p = i+1
+    for j in range(3):
+        p = a.index(p)+1
+    ans[p-1] = str(b[i])
+print(ans)
+with open('shuffle.out', 'w') as f:
+    for i in ans:
+        f.write(i + '\n')

@@ -1,0 +1,13 @@
+fin = open('cowsignal.in')
+m, n, k = map(int, fin.readline().split())
+ans = []
+for j in range(m):
+    l = fin.readline().strip()
+    n = ""
+    for i in l:
+        n += i*k
+    for i in range(k):
+        ans.append(n)
+with open('cowsignal.out', 'w') as f:
+    for i in ans:
+        f.write(i + '\n')
